@@ -9,11 +9,11 @@ src_appointments as (
 renamed as (
 
     select
-        appointment_id,
-        patient_id,
-        doctor_id,
-        appointment_date,
-        appointment_time,
+        md5(appointment_id) as id_appointment,
+        md5(patient_id) as id_patient,
+        md5(doctor_id) as id_doctor,
+        appointment_date as date_appointment,
+        appointment_time as time_appointment,
         reason_for_visit,
         status,
         check_in_time,
@@ -22,7 +22,7 @@ renamed as (
         duration_minutes,
         cancel_reason
 
-    from source
+    from src_appointments
 
 )
 
