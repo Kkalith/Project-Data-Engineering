@@ -5,7 +5,6 @@ sources:
     description: "Synthetic hospital dataset containing information on patients, doctors, appointments, treatments, and billing. Designed for analytics, machine learning, and data engineering practice."
     database: alumno30_dev_bronze_db
     tables:
-
       - name: appointments
         description: "Records of scheduled appointments between patients and doctors, including timing, status, duration, and operational details."
         columns:
@@ -37,14 +36,21 @@ sources:
             data_tests:
               - accepted_values:
                   arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
-                    values: ['Consultation', 'Emergency', 'Follow-up', 'Therapy', 'Checkup']
+                    values:
+                      [
+                        "Consultation",
+                        "Emergency",
+                        "Follow-up",
+                        "Therapy",
+                        "Checkup",
+                      ]
           - name: status
             data_type: varchar
             description: "Current status of the appointment (Scheduled, Completed, Cancelled)."
             data_tests:
               - accepted_values:
                   arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
-                    values: ['No-show', 'Completed', 'Scheduled', 'Cancelled']
+                    values: ["No-show", "Completed", "Scheduled", "Cancelled"]
           - name: check_in_time
             data_type: time
             description: "Time when the patient checked in upon arrival."
@@ -63,7 +69,17 @@ sources:
             data_tests:
               - accepted_values:
                   arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
-                    values: ['Insurance issue', 'Scheduling error', 'Weather problems', 'None', 'Doctor unavailable', 'Patient sick', 'Emergency conflict', 'Transportation issue']
+                    values:
+                      [
+                        "Insurance issue",
+                        "Scheduling error",
+                        "Weather problems",
+                        "None",
+                        "Doctor unavailable",
+                        "Patient sick",
+                        "Emergency conflict",
+                        "Transportation issue",
+                      ]
 
 
       - name: billing
@@ -72,24 +88,41 @@ sources:
           - name: bill_id
             data_type: varchar
             description: "Unique identifier for the bill."
+            data_tests:
+              - unique
+              - not_null
           - name: patient_id
             data_type: varchar
             description: "Identifier of the patient being billed."
+            data_tests:
+              - not_null
           - name: treatment_id
             data_type: varchar
             description: "Identifier of the treatment associated with the bill."
+            data_tests:
+              - not_null
           - name: bill_date
             data_type: date
             description: "Date when the bill was generated."
           - name: amount
             data_type: number
             description: "Total amount billed before insurance or adjustments."
+            data_tests:
+              - positive_values
           - name: payment_method
             data_type: varchar
             description: "Payment method used (Cash, Card, Insurance)."
+            data_tests:
+              - accepted_values:
+                  arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
+                    values: ["Cash", "Credit Card", "Insurance"]
           - name: payment_status
             data_type: varchar
             description: "Status of the payment (Paid, Pending, Failed)."
+            data_tests:
+              - accepted_values:
+                  arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
+                    values: ["Pending", "Paid", "Failed"]
           - name: payment_date
             data_type: date
             description: "Date when the payment was completed."
@@ -98,13 +131,19 @@ sources:
             description: "Deadline for completing the payment."
           - name: late_fee
             data_type: number
+            data_tests:
+              - positive_values
             description: "Additional fee applied for late payments, if any."
           - name: insurance_coverage_amount
             data_type: number
             description: "Amount covered by the insurance provider."
+            data_tests:
+              - positive_values
           - name: patient_payment_amount
             data_type: number
             description: "Amount paid directly by the patient."
+            data_tests:
+              - positive_values
 
       - name: doctors
         description: "Information about medical staff, their specialties, experience, and availability."
@@ -112,6 +151,9 @@ sources:
           - name: doctor_id
             data_type: varchar
             description: "Unique identifier for the doctor."
+            data_tests:
+              - unique
+              - not_null
           - name: first_name
             data_type: varchar
             description: "Doctor's first name."
@@ -127,15 +169,21 @@ sources:
           - name: years_experience
             data_type: number
             description: "Total years of medical experience."
+            data_tests:
+              - positive_values
           - name: hospital_branch
             data_type: varchar
             description: "Hospital branch where the doctor is based."
           - name: email
             data_type: varchar
             description: "Doctor's official email address."
+            data_tests:
+              - not_null
           - name: consultation_fee
             data_type: number
             description: "Standard consultation fee charged by the doctor."
+            data_tests:
+              - positive_values
           - name: available_days
             data_type: varchar
             description: "Days of the week when the doctor is available."
