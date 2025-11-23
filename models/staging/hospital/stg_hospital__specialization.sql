@@ -9,7 +9,8 @@ src_specialization as (
 renamed as (
 
     select distinct
-        md5(specialization) as id_specialization,
+        {{ dbt_utils.generate_surrogate_key(['specialization']) }} as id_specialization
+,
         specialization
 
     from src_specialization

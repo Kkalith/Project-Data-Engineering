@@ -9,18 +9,18 @@ src_doctors as (
 renamed as (
 
     select
-        md5(doctor_id) as id_doctor,
+        {{ dbt_utils.generate_surrogate_key(['doctor_id']) }} as id_doctor,
         first_name,
         last_name,
         NULL AS last_name_2,
         phone_number,
         years_experience,
-        hospital_branch,
         email,
         consultation_fee,
-        available_days,
         office_room,
-        md5(specialization) as id_specialization
+        {{ dbt_utils.generate_surrogate_key(['specialization']) }} as id_specialization,
+        {{ dbt_utils.generate_surrogate_key(['hospital_branch']) }} as id_hospital_branch,
+        {{ dbt_utils.generate_surrogate_key(['available_days']) }} as id_available_days
 
     from src_doctors
 

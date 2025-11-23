@@ -10,7 +10,11 @@ renamed as (
 
     select distinct
         md5(cancel_reason) as id_cancel_reason,
-        cancel_reason
+        {{ clean_string('cancel_reason') }} as cancel_reason,
+                CASE 
+            WHEN {{ clean_string('cancel_reason') }} IS NULL OR {{ clean_string('cancel_reason') }} = 'none' THEN 'did not cancel the appointment'
+            ELSE 'canceled the appointment'
+        END AS cancellation_status
 
     from src_cancel_reason
 

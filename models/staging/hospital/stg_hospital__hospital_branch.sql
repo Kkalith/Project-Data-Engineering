@@ -9,7 +9,8 @@ src_hospital_branch as (
 renamed as (
 
     select distinct
-        md5(hospital_branch) as id_hospital_branch,
+       {{ dbt_utils.generate_surrogate_key(['hospital_branch']) }} as id_hospital_branch
+,
         hospital_branch
 
     from src_hospital_branch

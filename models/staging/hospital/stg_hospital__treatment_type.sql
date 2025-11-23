@@ -9,7 +9,7 @@ src_treatment_type as (
 renamed as (
 
     select distinct
-        md5(treatment_type) as id_treatment_type,
+        {{ dbt_utils.generate_surrogate_key(['treatment_type']) }} as id_treatment_type,
         treatment_type
 
     from src_treatment_type
