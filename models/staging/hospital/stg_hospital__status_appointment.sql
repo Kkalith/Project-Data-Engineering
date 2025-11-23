@@ -6,14 +6,22 @@ src_status_appointments as (
 
 ),
 
-renamed as (
+renamed AS (
+    SELECT DISTINCT
+        {{ dbt_utils.generate_surrogate_key(['status']) }} AS id_status_appointment,
+        status,
 
-    select distinct
-        md5(status) as id_status_appointment,
-        status
+        CASE
+            WHEN lower(status) IN ('no-show', 'cancelled') 
+                THEN 'missed appointment'
+            WHEN lower(status) = 'completed' 
+                THEN 'attended appointment'
+            WHEN lower(status) = 'scheduled' 
+                THEN 'upcoming appointment'
+            ELSE 'unknown'
+        END AS appointment_category
 
-    from src_status_appointments
-
+    FROM src_status_appointments
 )
 
 select * from renamed
