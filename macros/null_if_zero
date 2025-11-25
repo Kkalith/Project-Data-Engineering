@@ -1,3 +1,0 @@
-{% macro null_if_zero(col) %}
-    nullif({{ col }}, 0)
-{% endmacro %}
