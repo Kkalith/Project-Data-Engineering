@@ -67,9 +67,6 @@ medications AS (
 final AS (
     SELECT
         p.id_patient,
-        INITCAP(p.first_name || ' ' || p.last_name) AS full_name,
-        p.first_name,
-        p.last_name,
         p.gender,
         p.date_of_birth,
         p.age,
@@ -79,15 +76,9 @@ final AS (
             WHEN p.age BETWEEN 40 AND 64 THEN 'Middle Age'
             ELSE 'Senior'
         END AS age_group,
-        p.contact_number,
-        p.address,
         p.street_name,
         p.registration_date,
-        DATE_PART('year', p.registration_date) AS registration_year,
-        DATE_PART('month', p.registration_date) AS registration_month,
-        DATE_PART('quarter', p.registration_date) AS registration_quarter,
         p.insurance_number,
-        p.email,
         p.medical_history_summary,
         ins.insurance_provider,
         bt.blood_type,

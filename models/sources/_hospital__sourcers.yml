@@ -185,7 +185,6 @@ sources:
             data_type: number
             description: "Additional fee applied for late payments, if any."
             data_tests:
-            data_tests:
               - positive_values
               - dbt_utils.expression_is_true:
                   expression: "NOT(late_fee > 0 AND payment_status != 'Paid')"

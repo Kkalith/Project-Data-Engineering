@@ -5,13 +5,7 @@ packages:
   - name: codegen
     package: dbt-labs/codegen
     version: 0.14.0
-  - name: dbt_snowflake_monitoring
-    package: get-select/dbt_snowflake_monitoring
-    version: 5.5.0
   - name: dbt_date
     package: godatadriven/dbt_date
     version: 0.9.1
-  - name: dbt_snowflake_query_tags
-    package: get-select/dbt_snowflake_query_tags
-    version: 2.5.4
-sha1_hash: 96c81957254a1c491b2fb5043ec814ec3ace130b
+sha1_hash: 3ccce7a8f3a60f5b15eef0fd8c33786935de8d0c

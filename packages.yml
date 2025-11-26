@@ -5,8 +5,5 @@ packages:
   - package: dbt-labs/codegen
     version: ">=0.10.0"
 
-  - package: get-select/dbt_snowflake_monitoring
-    version: 5.5.0
-  
   - package: godatadriven/dbt_date
     version: 0.9.1

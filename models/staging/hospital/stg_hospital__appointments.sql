@@ -15,8 +15,8 @@ renamed as (
         check_in_time,
         check_out_time, 
         timestamp_from_parts(date_appointment, time_appointment) as appointment_datetime,
-        wait_time_minutes::integer as wait_time_minutes,
-        duration_minutes::integer as duration_minutes,
+        wait_time_minutes,
+        duration_minutes,
         ROUND(wait_time_minutes::numeric / 60, 2) AS wait_time_hours, -- tiempo esperado en horas
         ROUND(duration_minutes::numeric / 60, 2) AS duration_hours, -- duración cita en horas
         case

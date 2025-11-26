@@ -35,11 +35,6 @@ available_days AS (
 final AS (
     SELECT
         d.id_doctor,
-        INITCAP(d.first_name || ' ' || d.last_name) AS full_name,
-        d.first_name,
-        d.last_name,
-        d.phone_number,
-        d.email,
         d.office_room,
         d.years_experience,
         d.consultation_fee,
