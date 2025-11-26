@@ -10,17 +10,13 @@ renamed as (
 
     select
         {{ dbt_utils.generate_surrogate_key(['appointment_id']) }} as id_appointment,
-        
-        appointment_date as date_appointment, --castear
-        appointment_time as time_appointment, --castear
-        check_in_time, --castear
-        check_out_time, --castear
+        appointment_date as date_appointment, 
+        appointment_time as time_appointment,
+        check_in_time,
+        check_out_time, 
         timestamp_from_parts(date_appointment, time_appointment) as appointment_datetime,
-        --(case when check_in_time is not null then true else false end) as attended_flag,(case when status = 'no-show' then true else false end) as no_show_flag,
-        --(case when cancel_reason != 'none' then true else false end) as cancel_flag,
-
-        wait_time_minutes::integer as wait_time_minutes,
-        duration_minutes::integer as duration_minutes,
+        wait_time_minutes,
+        duration_minutes,
         ROUND(wait_time_minutes::numeric / 60, 2) AS wait_time_hours, -- tiempo esperado en horas
         ROUND(duration_minutes::numeric / 60, 2) AS duration_hours, -- duración cita en horas
         case

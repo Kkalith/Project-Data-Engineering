@@ -2,284 +2,458 @@ version: 2
 
 sources:
   - name: hospital
-    description: "Source data from the hospital systems."
+    description: ""
     tables:
       - name: stg_hospital__allergies
-        description: "Staging table containing patient allergy records."
+        description: ""
         columns:
           - name: patient_allergy_id
-            description: "Unique identifier for each patient allergy record."
+            data_type: varchar
+            description: ""
           - name: patient_id
-            description: "Unique identifier of the patient."
+            data_type: varchar
+            description: ""
           - name: allergy_name
-            description: "Name of the allergy reported by the patient."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__appointments
-        description: "Staging table containing patient appointment details."
+        description: ""
         columns:
           - name: id_appointment
-            description: "Unique identifier for the appointment."
+            data_type: varchar
+            description: ""
           - name: date_appointment
-            description: "Date when the appointment is scheduled."
+            data_type: date
+            description: ""
           - name: time_appointment
-            description: "Scheduled time of the appointment."
+            data_type: time
+            description: ""
           - name: check_in_time
-            description: "Actual time when the patient checked in."
+            data_type: time
+            description: ""
           - name: check_out_time
-            description: "Actual time when the patient checked out."
+            data_type: time
+            description: ""
+          - name: appointment_datetime
+            data_type: timestamp_ntz
+            description: ""
           - name: wait_time_minutes
-            description: "Wait time in minutes before the appointment started."
+            data_type: number
+            description: ""
           - name: duration_minutes
-            description: "Duration of the appointment in minutes."
+            data_type: number
+            description: ""
           - name: wait_time_hours
-            description: "Wait time in hours before the appointment started."
+            data_type: number
+            description: ""
           - name: duration_hours
-            description: "Duration of the appointment in hours."
+            data_type: number
+            description: ""
+          - name: show_up_message
+            data_type: varchar
+            description: ""
           - name: id_cancel_reason
-            description: "Identifier for the reason of cancellation, if any."
+            data_type: varchar
+            description: ""
           - name: id_reason_for_visit
-            description: "Identifier for the reason for the visit."
+            data_type: varchar
+            description: ""
           - name: id_status_appointment
-            description: "Identifier for the status of the appointment."
+            data_type: varchar
+            description: ""
           - name: id_patient
-            description: "Identifier of the patient attending the appointment."
+            data_type: varchar
+            description: ""
           - name: id_doctor
-            description: "Identifier of the doctor assigned to the appointment."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__available_days
-        description: "Staging table containing the mapping of day ranges to full day names."
+        description: ""
         columns:
-          - name: original_range
-            description: "Original abbreviation or range for the day."
+          - name: id_surrogate
+            data_type: varchar
+            description: ""
+          - name: id_available_days
+            data_type: varchar
+            description: ""
           - name: full_day_name
-            description: "Full name of the day (e.g., Monday, Tuesday)."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__billing
-        description: "Staging table for patient billing information."
+        description: ""
         columns:
           - name: id_bill
-            description: "Unique identifier for the bill."
+            data_type: varchar
+            description: ""
           - name: bill_date
-            description: "Date when the bill was issued."
+            data_type: date
+            description: ""
           - name: amount_dolars
-            description: "Total amount billed in dollars."
+            data_type: number
+            description: ""
           - name: payment_status
-            description: "Status of the payment (e.g., Paid, Pending)."
+            data_type: varchar
+            description: ""
+          - name: is_payed
+            data_type: boolean
+            description: ""
           - name: payment_date
-            description: "Date when the payment was made."
+            data_type: date
+            description: ""
           - name: due_date
-            description: "Payment due date."
+            data_type: date
+            description: ""
           - name: payments_days
-            description: "Number of days taken to pay the bill."
+            data_type: number
+            description: ""
+          - name: billing_delay_days
+            data_type: number
+            description: ""
+          - name: is_late
+            data_type: boolean
+            description: ""
           - name: late_fee_dolars
-            description: "Late fee charged in dollars, if applicable."
+            data_type: number
+            description: ""
           - name: insurance_coverage_amount
-            description: "Amount covered by the patient's insurance."
+            data_type: number
+            description: ""
           - name: patient_payment_amount
-            description: "Amount paid by the patient."
-          - name: diference_patient_insurance
-            description: "Difference between patient payment and insurance coverage."
+            data_type: number
+            description: ""
+          - name: total_amount
+            data_type: number
+            description: ""
           - name: id_patient
-            description: "Identifier of the patient related to the bill."
+            data_type: varchar
+            description: ""
           - name: id_treatment
-            description: "Identifier of the treatment linked to the bill."
+            data_type: varchar
+            description: ""
           - name: id_payment_method
-            description: "Identifier of the payment method used."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__blood_type
-        description: "Staging table containing blood type information."
+        description: ""
         columns:
           - name: id_blood_type
-            description: "Unique identifier for the blood type record."
+            data_type: varchar
+            description: ""
           - name: blood_type
-            description: "Blood type (e.g., A+, O-)."
+            data_type: varchar
+            description: ""
           - name: blood_group
-            description: "ABO blood group (A, B, AB, O)."
+            data_type: varchar
+            description: ""
           - name: rh_factor
-            description: "Rh factor (+ or -)."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__cancel_reason
-        description: "Staging table listing reasons for appointment cancellation."
+        description: ""
         columns:
           - name: id_cancel_reason
-            description: "Unique identifier for the cancellation reason."
+            data_type: varchar
+            description: ""
           - name: cancel_reason
-            description: "Description of the cancellation reason."
+            data_type: varchar
+            description: ""
+          - name: cancellation_status
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__chronic_conditions
-        description: "Patient chronic conditions records."
+        description: ""
         columns:
           - name: patient_condition_id
-            description: "Unique identifier for the patient condition record."
+            data_type: varchar
+            description: ""
           - name: patient_id
-            description: "Identifier of the patient."
+            data_type: varchar
+            description: ""
           - name: condition_name
-            description: "Name of the chronic condition."
+            data_type: varchar
+            description: ""
           - name: loaded_at
-            description: "Timestamp when the record was loaded into staging."
+            data_type: timestamp_ltz
+            description: ""
 
       - name: stg_hospital__current_medications
-        description: "Patient current medications records."
+        description: ""
         columns:
           - name: patient_medication_id
-            description: "Unique identifier for the patient medication record."
+            data_type: varchar
+            description: ""
           - name: patient_id
-            description: "Identifier of the patient."
+            data_type: varchar
+            description: ""
           - name: medication_name
-            description: "Name of the current medication."
+            data_type: varchar
+            description: ""
           - name: loaded_at
-            description: "Timestamp when the record was loaded into staging."
+            data_type: timestamp_ltz
+            description: ""
 
       - name: stg_hospital__doctors
-        description: "Staging table containing doctor information."
+        description: ""
         columns:
           - name: id_doctor
-            description: "Unique identifier for the doctor."
+            data_type: varchar
+            description: ""
           - name: first_name
-            description: "Doctor's first name."
+            data_type: varchar
+            description: ""
           - name: last_name
-            description: "Doctor's last name."
-          - name: last_name_2
-            description: "Doctor's second last name (if applicable)."
+            data_type: varchar
+            description: ""
           - name: phone_number
-            description: "Contact phone number of the doctor."
+            data_type: varchar
+            description: ""
           - name: years_experience
-            description: "Number of years of experience the doctor has."
-          - name: hospital_branch
-            description: "Hospital branch where the doctor works."
+            data_type: number
+            description: ""
           - name: email
-            description: "Doctor's email address."
+            data_type: varchar
+            description: ""
           - name: consultation_fee
-            description: "Fee charged per consultation."
-          - name: available_days
-            description: "Days of the week the doctor is available."
+            data_type: number
+            description: ""
           - name: office_room
-            description: "Office or consultation room assigned to the doctor."
+            data_type: varchar
+            description: ""
           - name: id_specialization
-            description: "Identifier of the doctor's medical specialization."
+            data_type: varchar
+            description: ""
+          - name: id_hospital_branch
+            data_type: varchar
+            description: ""
+          - name: id_available_days
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__hospital_branch
-        description: "Hospital branches information."
+        description: ""
         columns:
           - name: id_hospital_branch
-            description: "Unique identifier for the hospital branch."
+            data_type: varchar
+            description: ""
           - name: hospital_branch
-            description: "Name of the hospital branch."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__insurance_provider
-        description: "Insurance provider details."
+        description: ""
         columns:
           - name: id_insurance_provider
-            description: "Unique identifier for the insurance provider."
+            data_type: varchar
+            description: ""
           - name: insurance_provider
-            description: "Name of the insurance provider."
+            data_type: varchar
+            description: ""
+
+      - name: stg_hospital__medications_administered
+        description: ""
+        columns:
+          - name: patient_medications_administered
+            data_type: varchar
+            description: ""
+          - name: id_patient
+            data_type: varchar
+            description: ""
+          - name: medications_administered
+            data_type: varchar
+            description: ""
+
+      - name: stg_hospital__patient_allergy
+        description: ""
+        columns:
+          - name: patient_allergy_id
+            data_type: varchar
+            description: ""
+          - name: id_patient
+            data_type: varchar
+            description: ""
+          - name: allergy_name
+            data_type: varchar
+            description: ""
+
+      - name: stg_hospital__patient_condition
+        description: ""
+        columns:
+          - name: patient_chronic_conditions
+            data_type: varchar
+            description: ""
+          - name: id_patient
+            data_type: varchar
+            description: ""
+          - name: chronic_conditions
+            data_type: varchar
+            description: ""
+
+      - name: stg_hospital__patient_medication
+        description: ""
+        columns:
+          - name: patient_current_medications
+            data_type: varchar
+            description: ""
+          - name: id_patient
+            data_type: varchar
+            description: ""
+          - name: current_medications
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__patients
-        description: "Patient demographic and medical information."
+        description: ""
         columns:
           - name: id_patient
-            description: "Unique identifier for the patient."
+            data_type: varchar
+            description: ""
           - name: first_name
-            description: "Patient's first name."
+            data_type: varchar
+            description: ""
           - name: last_name
-            description: "Patient's last name."
-          - name: last_name_2
-            description: "Patient's second last name, if applicable."
+            data_type: varchar
+            description: ""
           - name: gender
-            description: "Patient's gender."
+            data_type: varchar
+            description: ""
           - name: date_of_birth
-            description: "Patient's date of birth."
+            data_type: date
+            description: ""
           - name: age
-            description: "Patient's age in years."
+            data_type: number
+            description: ""
           - name: contact_number
-            description: "Patient's contact phone number."
+            data_type: varchar
+            description: ""
           - name: address
-            description: "Patient's full address."
+            data_type: varchar
+            description: ""
           - name: street_name
-            description: "Street name from the patient's address."
+            data_type: varchar
+            description: ""
           - name: registration_date
-            description: "Date when the patient was registered in the hospital system."
+            data_type: date
+            description: ""
           - name: insurance_number
-            description: "Patient's insurance policy number."
+            data_type: varchar
+            description: ""
           - name: email
-            description: "Patient's email address."
-          - name: allergies
-            description: "Patient's known allergies."
+            data_type: varchar
+            description: ""
           - name: chronic_conditions
-            description: "Patient's chronic conditions."
+            data_type: varchar
+            description: ""
           - name: current_medications
-            description: "Patient's current medications."
+            data_type: varchar
+            description: ""
           - name: medical_history_summary
-            description: "Summary of the patient's medical history."
+            data_type: varchar
+            description: ""
           - name: id_insurance_provider
-            description: "Identifier for the patient's insurance provider."
+            data_type: varchar
+            description: ""
           - name: id_blood_type
-            description: "Identifier for the patient's blood type."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__payment_method
-        description: "Payment methods available for billing."
+        description: ""
         columns:
           - name: id_payment_method
-            description: "Unique identifier for the payment method."
+            data_type: varchar
+            description: ""
           - name: payment_method
-            description: "Description of the payment method (e.g., Cash, Credit Card)."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__reason_for_visit
-        description: "Possible reasons for a patient visit."
+        description: ""
         columns:
           - name: id_reason_for_visit
-            description: "Unique identifier for the reason for visit."
+            data_type: varchar
+            description: ""
           - name: reason_for_visit
-            description: "Description of the reason for the visit."
+            data_type: varchar
+            description: ""
+          - name: reason_category
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__specialization
-        description: "Medical specializations of doctors."
+        description: ""
         columns:
           - name: id_specialization
-            description: "Unique identifier for the specialization."
+            data_type: varchar
+            description: ""
           - name: specialization
-            description: "Name of the medical specialization."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__status_appointment
-        description: "Statuses that an appointment can have."
+        description: ""
         columns:
           - name: id_status_appointment
-            description: "Unique identifier for the appointment status."
+            data_type: varchar
+            description: ""
           - name: status
-            description: "Description of the appointment status (e.g., Scheduled, Completed)."
+            data_type: varchar
+            description: ""
+          - name: appointment_category
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__treatment_type
-        description: "Types of treatments available."
+        description: ""
         columns:
           - name: id_treatment_type
-            description: "Unique identifier for the treatment type."
+            data_type: varchar
+            description: ""
           - name: treatment_type
-            description: "Description of the treatment type."
+            data_type: varchar
+            description: ""
 
       - name: stg_hospital__treatments
-        description: "Patient treatments and procedures."
+        description: ""
         columns:
           - name: id_treatment
-            description: "Unique identifier for the treatment record."
-          - name: id_appointment
-            description: "Identifier of the associated appointment."
+            data_type: varchar
+            description: ""
           - name: description
-            description: "Description of the treatment."
+            data_type: varchar
+            description: ""
           - name: cost_dolars
-            description: "Cost of the treatment in dollars."
+            data_type: number
+            description: ""
           - name: treatment_date
-            description: "Date when the treatment was performed."
+            data_type: date
+            description: ""
           - name: treatment_outcome
-            description: "Outcome of the treatment."
+            data_type: varchar
+            description: ""
           - name: medications_administered
-            description: "Medications administered during the treatment."
+            data_type: varchar
+            description: ""
           - name: complications
-            description: "Any complications observed during the treatment."
+            data_type: varchar
+            description: ""
           - name: duration_minutes
-            description: "Duration of the treatment in minutes."
+            data_type: number
+            description: ""
           - name: equipment_used
-            description: "Medical equipment used during the treatment."
+            data_type: varchar
+            description: ""
           - name: risk_level
-            description: "Risk level of the treatment (e.g., Low, Medium, High)."
+            data_type: varchar
+            description: ""
+          - name: id_appointment
+            data_type: varchar
+            description: ""
           - name: id_treatment_type
-            description: "Identifier for the type of treatment."
+            data_type: varchar
+            description: ""
